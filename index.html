@@ -327,7 +327,7 @@
         background: #020202;
         .background-banner {
   position: relative;
-  background: url('bg.png') center center/cover no-repeat;
+  background: url('BG img.PNG') center center/cover no-repeat;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -388,11 +388,98 @@
   color: #00ffffb0;
   margin-top: 20px;
 }
+/* 🔹 Intro Video Animation Styling */
+#intro-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+#intro-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+/* 🔹 Fullscreen Intro Background */
+#intro-logo-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #000 60%, #020a0a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  animation: fadeOut 2.5s ease 3s forwards; /* disappears after 3s */
+}
+
+/* 🔹 Center Logo Section */
+.center-logo-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  background: transparent;
+}
+
+/* 🔹 Glowing Circular Frame */
+.logo-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #00ffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 40px #00ffff;
+}
+
+/* 🔹 Logo Image */
+.logo-circle img {
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 30px #00ffff80;
+}
+
+
+
 
     </style>
   </head>
 
   <body>
+    <!-- 🔹 Intro Video Animation -->
+<div id="intro-video">
+  <video autoplay muted playsinline id="introVideo">
+    <source src="animation.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+<!-- Center Logo Section -->
+<section class="center-logo-section">
+  <div class="logo-circle">
+    <img src="logo.PNG" alt="Battle of Bytes Logo">
+  </div>
+</section>
+
+
+
+    
     <!-- Navigation -->
     <nav>
       <a href="about.html" class="nav-btn">About</a>
@@ -704,6 +791,19 @@ window.onclick = e => {
           pollBars.appendChild(bar);
         }
       }
+      
+  const introVideo = document.getElementById("introVideo");
+  const introContainer = document.getElementById("intro-video");
+
+  introVideo.addEventListener("ended", () => {
+    introVideo.style.opacity = "0";
+    setTimeout(() => {
+      introContainer.style.display = "none";
+      document.body.style.overflowY = "auto";
+    }, 1000); // after fade out
+  });
+
+
     </script>
   </body>
 </html>
