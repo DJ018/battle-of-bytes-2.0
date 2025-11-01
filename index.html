@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battle of Bytes 2.0 - Auction Day</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #050505;
+        color: #dcdcdc;
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      nav {
+        position: absolute;
+        top: 20px;
+        left: 30px;
+        display: flex;
+        gap: 20px;
+        z-index: 1000;
+      }
+
+      .nav-btn {
+        color: #00ffff;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+        border: 1px solid #00ffff70;
+        padding: 8px 18px;
+        border-radius: 25px;
+        transition: 0.3s;
+      }
+
+      .nav-btn:hover {
+        background-color: #00ffff;
+        color: #000;
+        box-shadow: 0 0 15px #00ffff;
+      }
+      body {
+  font-family: "Poppins", sans-serif;
+  background: url("bg.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #dcdcdc;
+  overflow-x: hidden;
+}
+
+
+      /* Animation */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .slide-left {
+        opacity: 0;
+        transform: translateX(-60px);
+        transition: all 1s ease;
+      }
+
+      .slide-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .slide-right {
+        opacity: 0;
+        transform: translateX(60px);
+        transition: all 1s ease;
+      }
+
+      .slide-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Hero */
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(135deg, #020202, #0c0c1a);
+        border-bottom: 1px solid #00ffff30;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        color: #00ffff;
+        text-shadow: 0 0 20px #00ffff;
+      }
+
+      .hero-content p {
+        font-size: 1.3rem;
+        color: #ccc;
+        margin-top: 10px;
+      }
+
+      /* Auction */
+      #auction {
+        padding: 60px 10%;
+        text-align: center;
+      }
+
+      #auction h2 {
+        color: #00ffff;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px #00ffff;
+      }
+
+      .intro {
+        color: #ccc;
+        margin-bottom: 40px;
+        line-height: 1.5;
+      }
+
+      .teams {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px;
+      }
+
+      .team-card {
+        background: #0a0a0a;
+        border: 1px solid #00ffff50;
+        border-radius: 20px;
+        padding: 30px;
+        width: 250px;
+        box-shadow: 0 0 15px #00ffff20;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .team-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px #00ffff60;
+      }
+
+      .team-card h3 {
+        color: #00ffff;
+      }
+
+      /* Video Section */
+      #highlights {
+        padding: 60px 10%;
+        text-align: center;
+        background: radial-gradient(circle at top, #0b0b1a, #020202);
+        border-top: 1px solid #00ffff30;
+        border-bottom: 1px solid #00ffff30;
+      }
+
+      #highlights h2 {
+        color: #00ffff;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px #00ffff;
+      }
+
+      .video-container {
+        margin: 30px auto;
+        max-width: 800px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 25px #00ffff50;
+        border: 2px solid #00ffff30;
+      }
+
+      .video-container video {
+        width: 100%;
+      }
+
+      /* Poll Section */
+      #poll {
+        padding: 80px 10%;
+        text-align: center;
+        background: radial-gradient(circle at top, #0b0b1a, #020202);
+        border-top: 1px solid #00ffff40;
+        border-bottom: 1px solid #00ffff30;
+      }
+
+      #poll h2 {
+        color: #00ffff;
+        font-size: 2.5rem;
+        text-shadow: 0 0 15px #00ffff;
+        margin-bottom: 25px;
+      }
+
+      .poll-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #0a0a0a;
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid #00ffff40;
+        box-shadow: 0 0 25px #00ffff30;
+      }
+
+      .poll-select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #00ffff80;
+        background: #111;
+        color: #00ffff;
+        font-size: 1rem;
+        margin-bottom: 25px;
+      }
+
+      .poll-btn {
+        background-color: #00ffff;
+        color: #000;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 30px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .poll-btn:hover {
+        background: none;
+        color: #00ffff;
+        border: 1px solid #00ffff;
+        box-shadow: 0 0 15px #00ffff;
+      }
+
+      .poll-bar {
+        background: linear-gradient(90deg, #00ffff80, #00ffff40);
+        border-radius: 20px;
+        margin: 10px 0;
+        padding: 8px 15px;
+        color: #fff;
+        font-size: 0.95rem;
+        position: relative;
+        transition: width 1s ease;
+      }
+
+      .poll-bar span {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #000;
+        font-weight: 600;
+      }
+
+      /* Enquiry Section */
+      #enquiry {
+        padding: 80px 10%;
+        text-align: center;
+        background: linear-gradient(160deg, #050505, #0c0c1a);
+      }
+
+      #enquiry h2 {
+        color: #00ffff;
+        font-size: 2.5rem;
+        text-shadow: 0 0 15px #00ffff;
+        margin-bottom: 20px;
+      }
+
+      .enquiry-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #0a0a0a;
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid #00ffff40;
+        box-shadow: 0 0 25px #00ffff30;
+      }
+
+      .enquiry-form input,
+      .enquiry-form textarea {
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+        border: 1px solid #00ffff60;
+        border-radius: 10px;
+        background: #111;
+        color: #00ffff;
+        font-size: 1rem;
+      }
+
+      .enquiry-form button {
+        background-color: #00ffff;
+        color: #000;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 30px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .enquiry-form button:hover {
+        background: none;
+        color: #00ffff;
+        border: 1px solid #00ffff;
+        box-shadow: 0 0 15px #00ffff;
+      }
+      
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        border-top: 1px solid #222;
+        color: #888;
+        background: #020202;
+        .background-banner {
+  position: relative;
+  background: url('bg.png') center center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+      }
+      /* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  background: #0b0b0b;
+  margin: 10% auto;
+  padding: 30px;
+  border: 2px solid #00ffff70;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  color: #dcdcdc;
+  box-shadow: 0 0 25px #00ffff60;
+  animation: popup 0.5s ease;
+}
+
+@keyframes popup {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+  color: #00ffff;
+}
+
+.close-btn:hover {
+  color: #fff;
+}
+
+.modal-content h2 {
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+
+.modal-content h3 {
+  color: #00ffffb0;
+  margin-top: 20px;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <a href="about.html" class="nav-btn">About</a>
+      <a href="coordinators.html" class="nav-btn">👥 Coordinators</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero fade-in">
+      <div class="hero-content">
+        <h1>Battle of Bytes 2.0</h1>
+        <p>Auction Day — Tech Meets Strategy ⚡</p>
+      </div>
+    </header>
+    
+</section>
+
+
+    <!-- Auction -->
+    <section id="auction" class="slide-left">
+      <h2>Live Auction Dashboard</h2>
+      <p class="intro">
+        Teams compete to bid for top coders and developers! Each player
+        represents unique skillsets — choose wisely to build your ultimate tech
+        army.
+      </p>
+
+      <div class="teams">
+        <div class="team-card"><h3>Ruby Renegades</h3></div>
+        <div class="team-card"><h3>Python Pioneers</h3></div>
+        <div class="team-card"><h3>Syntax Samurai</h3></div>
+        <div class="team-card"><h3>Code Commanders</h3></div>
+        <div class="team-card"><h3>Logic Luminaries</h3></div>
+        <div class="team-card"><h3>Data Mavericks</h3></div>
+        <div class="team-card"><h3>Quantum Coders</h3></div>
+        <div class="team-card"><h3>Java Jesters</h3></div>
+        <div class="team-card"><h3>Byte Busters</h3></div>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section id="highlights" class="slide-right">
+      <h2>Event Highlights</h2>
+      <p class="intro">
+        Relive the energy and excitement of the Auction Day of Battle of Bytes
+        2.0 — where innovation meets strategy!
+      </p>
+      <div class="video-container">
+        <video controls>
+          <source src="bob auction.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </section>
+
+    <!-- Poll -->
+    <section id="poll" class="slide-left">
+      <h2>Vote Your Favorite Team 💫</h2>
+      <div class="poll-container">
+        <form id="voteForm">
+          <select id="teamSelect" class="poll-select" required>
+            <option value="" disabled selected>Select a team</option>
+            <option>Byte Busters</option>
+            <option>Logic Luminaries</option>
+            <option>Ruby Renegades</option>
+            <option>Data Mavericks</option>
+            <option>Quantum Coders</option>
+            <option>Code Commanders</option>
+            <option>Python Pioneers</option>
+            <option>Java Jesters</option>
+            <option>Syntax Samurai</option>
+          </select>
+          <button type="submit" class="poll-btn">Vote Now 🚀</button>
+        </form>
+        <div id="pollBars"></div>
+      </div>
+    </section>
+
+    <!-- Enquiry -->
+    <section id="enquiry" class="slide-right">
+      <h2>Got a Question? 🤔</h2>
+      <form class="enquiry-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Submit Enquiry 💬</button>
+      </form>
+    </section>
+    <!-- Team Details Modal -->
+<div id="teamModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2 id="modalTeamName"></h2>
+    <p id="modalTagline"></p>
+    <h3>Mentor(s)</h3>
+    <p id="modalMentor"></p>
+    <h3>Members</h3>
+    <ul id="modalMembers"></ul>
+    <h3>Highest Bid</h3>
+    <p id="modalBid"></p>
+  </div>
+</div>
+
+
+    <footer>© 2025 Battle of Bytes 2.0 | Designed by Team BIT Mesra</footer>
+
+    <script>
+      // Scroll Animation
+      const elements = document.querySelectorAll(
+        ".fade-in, .slide-left, .slide-right"
+      );
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      elements.forEach((el) => observer.observe(el));
+
+      // Poll System
+      const pollData = {
+        "Byte Busters": 0,
+        "Logic Luminaries": 0,
+        "Ruby Renegades": 0,
+        "Data Mavericks": 0,
+        "Quantum Coders": 0,
+        "Code Commanders": 0,
+        "Python Pioneers": 0,
+        "Java Jesters": 0,
+        "Syntax Samurai": 0,
+      };
+      
+const teamDetails = {
+  "Logic Luminaries": {
+    tagline: "Enlightening the Path of Innovation",
+    mentor: "Vishambhar Pathak Sir, Ankita Puskar",
+    members: [
+      "Hemang Bhabhra - (450)",
+      "Karishma Jethwani - (850)",
+      "Manan Lalwani - (100)",
+      "Ansh Raj - (200)",
+      "Yashvardhan Thanvi - (1400)"
+    ],
+    highest: "Yashvardhan Thanvi (1400)"
+  },
+  "Code Commanders": {
+    tagline: "Silent, Swift, and Supreme",
+    mentor: "Puneet Sir",
+    members: [
+      "Tanmay Khandelwal - (1150)",
+      "Vrinda Singhal - (1850)",
+      "Mridul Krishna Sharma - (400)",
+      "Charchit Jain - (150)",
+      "Hardik Gupta - (100)",
+      "Durgesh Saini - (-)"
+    ],
+    highest: "Vrinda Singhal (1850)"
+  },
+  "Data Mavericks": {
+    tagline: "Defying Limits, Defining Data",
+    mentor: "B. Pathak Sir",
+    members: [
+      "Chirag Soni - (350)",
+      "Charul Choudhary - (950)",
+      "Sagar Agarwal - (2350)",
+      "Yuvang Khadolia - (100)",
+      "Harshit Kushwaha - (250)",
+      "Kush Bajaj - (150)"
+    ],
+    highest: "Sagar Agarwal (2350)"
+  },
+  "Quantum Coders": {
+    tagline: "Breaking Limits, Building Futures",
+    mentor: "Pankaj Sir",
+    members: [
+      "Gourav Mittal - (850)",
+      "Shirish Pareek - (100)",
+      "Aditya Goyal - (2000)",
+      "Sanchit Pawa - (600)",
+      "Shaikh Fahad - (200)",
+      "Gauranshi Mahawar - (100)"
+    ],
+    highest: "Aditya Goyal (2000)"
+  },
+  "Python Pioneers": {
+    tagline: "Innovate, Automate, Dominate",
+    mentor: "Seema Ma’am & Archana Ma’am",
+    members: [
+      "Saksham Singh - (300)",
+      "Shruti Khandelwal - (800)",
+      "Sehar Nawaz Ali - (200)",
+      "Suchit Gupta - (1200)",
+      "Muskan Jain - (550)",
+      "Yashvardhan Singh - (150)"
+    ],
+    highest: "Suchit Gupta (1200)"
+  },
+  "Java Jesters": {
+    tagline: "Powerful Code, Limitless Impact",
+    mentor: "Santosh Sharma Sir",
+    members: [
+      "Sagar Kumar Jha - (350)",
+      "Yashika Sharma - (100)",
+      "Manisha Parwani - (700)",
+      "Anvesha Mittal - (150)",
+      "Nischal Agrawal - (900)",
+      "Devesh Sharma - (150)"
+    ],
+    highest: "Nischal Agrawal (900)"
+  },
+  "Ruby Renegades": {
+    tagline: "Rewriting the Rules of Code",
+    mentor: "Abhishek Sir & Santosh Kumar Agarwal Sir",
+    members: [
+      "Anoushka Prakash - (1900)",
+      "Anuj Sharma - (350)",
+      "Abhinav Gupta - (350)",
+      "Mehul Sharma - (850)",
+      "Devesh Jain - (100)",
+      "Disha Kodasia - (600)"
+    ],
+    highest: "Anoushka Prakash (1900)"
+  },
+  "Syntax Samurai": {
+    tagline: "Precision in Every Command",
+    mentor: "Vivek Gaur & Madan Sir",
+    members: [
+      "Khushagra Jain - (850)",
+      "Dharna Gunidia - (450)",
+      "Dhruvika Khandelwal - (150)",
+      "Vansh Jain - (1100)",
+      "Vaibhav - (1000)",
+      "Shivin Agrawal - (850)"
+    ],
+    highest: "Vansh Jain (1100)"
+  },
+  "Byte Busters": {
+    tagline: "Smashing Errors, Delivering Perfection",
+    mentor: "Anju Ma’am",
+    members: [
+      "Saksham Agarwal - (950)",
+      "Shivani Kumari - (200)",
+      "Mehak Jha - (500)",
+      "Krishna Srivastava - (600)",
+      "Vansh Nagar - (200)",
+      "Shreyanshi Sharma - (500)"
+    ],
+    highest: "Saksham Agarwal (950)"
+  }
+};
+
+// Modal logic
+const modal = document.getElementById("teamModal");
+const closeBtn = document.querySelector(".close-btn");
+
+document.querySelectorAll(".team-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const team = card.textContent.trim();
+    const data = teamDetails[team];
+    if (!data) return;
+
+    document.getElementById("modalTeamName").textContent = team;
+    document.getElementById("modalTagline").textContent = `"${data.tagline}"`;
+    document.getElementById("modalMentor").textContent = data.mentor;
+
+    const membersList = document.getElementById("modalMembers");
+    membersList.innerHTML = "";
+    data.members.forEach(m => {
+      const li = document.createElement("li");
+      li.textContent = m;
+      membersList.appendChild(li);
+    });
+
+    document.getElementById("modalBid").textContent = data.highest;
+    modal.style.display = "block";
+  });
+});
+
+closeBtn.onclick = () => (modal.style.display = "none");
+window.onclick = e => {
+  if (e.target == modal) modal.style.display = "none";
+};
+
+
+      document
+        .getElementById("voteForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const selectedTeam = document.getElementById("teamSelect").value;
+          if (!selectedTeam) return;
+          pollData[selectedTeam]++;
+          showResults();
+        });
+
+      function showResults() {
+        const pollBars = document.getElementById("pollBars");
+        pollBars.innerHTML = "";
+        const totalVotes = Object.values(pollData).reduce((a, b) => a + b, 0);
+        for (const [team, votes] of Object.entries(pollData)) {
+          const percent = totalVotes
+            ? ((votes / totalVotes) * 100).toFixed(1)
+            : 0;
+          const bar = document.createElement("div");
+          bar.className = "poll-bar";
+          bar.style.width = `${percent}%`;
+          bar.innerHTML = `${team} <span>${percent}%</span>`;
+          pollBars.appendChild(bar);
+        }
+      }
+    </script>
+  </body>
+</html>

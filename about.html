@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Battle of Bytes 2.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top, #050505, #0c0c1a);
+      color: #dcdcdc;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 30px;
+      display: flex;
+      gap: 20px;
+      z-index: 1000;
+    }
+
+    .nav-btn {
+      color: #00ffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      border: 1px solid #00ffff70;
+      padding: 8px 18px;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+      background-color: #00ffff;
+      color: #000;
+      box-shadow: 0 0 15px #00ffff;
+    }
+
+    /* Hero */
+    header {
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #050505 20%, #0e0e1f 80%);
+      border-bottom: 1px solid #00ffff50;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      color: #00ffff;
+      text-shadow: 0 0 30px #00ffff;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1s ease-out;
+    }
+
+    /* About Section */
+    section {
+      padding: 80px 10%;
+      line-height: 1.8;
+      max-width: 1000px;
+      margin: auto;
+      color: #ccc;
+    }
+
+    .line {
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      margin: 15px auto 40px;
+      border-radius: 2px;
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    section p, section ul {
+      opacity: 0;
+      transition: all 1s ease-out;
+    }
+
+    /* Sliding Directions */
+    .slide-left {
+      transform: translateX(-80px);
+    }
+    .slide-right {
+      transform: translateX(80px);
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+    }
+
+    /* Bullet List */
+    ul {
+      margin-top: 20px;
+      list-style: none;
+    }
+
+    ul li {
+      margin: 10px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "⚡";
+      position: absolute;
+      left: 0;
+      color: #00ffff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #111;
+      background: #020202;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 60px 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html" class="nav-btn"> Home</a>
+    <a href="coordinators.html" class="nav-btn">👥 Coordinators</a>
+  </nav>
+
+  <header>
+    <h1 id="title">⚡ About the Auction Day</h1>
+  </header>
+
+  <section>
+    <div class="line"></div>
+
+    <p class="slide-left">
+      The Auction Day of <b>Battle of Bytes 2.0</b> is based on the English Auction format — 
+      a live, competitive bidding event where teams bid openly to form their ultimate Tech Squad 
+      of skilled coders and creators.
+    </p>
+
+    <br>
+
+    <p class="slide-right">
+      Each “coder” represents a domain such as DBMS, DSA, Java, C++, Python, or Web Development, 
+      with unique strengths and virtual ratings. Teams must analyze, strategize, and bid wisely to 
+      assemble the best combination of talent within a limited budget.
+    </p>
+
+    <br>
+
+    <p class="slide-left">
+      🎯 <b>Purpose of the Auction</b><br>
+      The Auction aims to combine technical understanding with strategic decision-making. It gives 
+      participants a hands-on experience of team building, evaluation, and logical planning — 
+      essential qualities for both competitive coding and real-world tech challenges.
+    </p>
+
+    <ul class="slide-right">
+      <li>Evaluate and prioritize skills under time pressure.</li>
+      <li>Make strategic and budget-conscious bidding decisions.</li>
+      <li>Build an ideal team to tackle upcoming coding and logic-based rounds.</li>
+      <li>Experience the thrill of competition in a gamified, professional tech setting.</li>
+    </ul>
+
+    <br>
+
+    <p class="slide-left">
+      The Auction Day marks the beginning of <b>Battle of Bytes 2.0</b> — 
+      setting the stage for creativity, collaboration, and code-driven rivalry!
+    </p>
+  </section>
+
+  <footer>
+    © 2025 Battle of Bytes 2.0 | Designed by Team BIT Mesra
+  </footer>
+
+  <script>
+    // Fade-in & slide-in animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.slide-left, .slide-right, #title').forEach(el => observer.observe(el));
+
+    // Title fade-in
+    window.addEventListener('load', () => {
+      document.getElementById('title').classList.add('visible');
+    });
+  </script>
+</body>
+</html>
